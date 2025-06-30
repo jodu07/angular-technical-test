@@ -1,0 +1,11 @@
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-filter-panel',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './filter-panel.component.html',
+  styleUrl: './filter-panel.component.scss',
+})
+export class FilterPanelComponent {}
