@@ -1,11 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import {
-  MatFormField,
-  MatInputModule,
-  MatLabel,
-} from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-filter-panel',
@@ -13,9 +12,10 @@ import {
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MatFormField,
-    MatLabel,
+    MatCheckboxModule,
+    MatFormFieldModule,
     MatInputModule,
+    MatSliderModule,
   ],
   templateUrl: './filter-panel.component.html',
   styleUrl: './filter-panel.component.scss',

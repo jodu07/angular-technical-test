@@ -1,1 +1,6 @@
-<p>hotels-list-page works!</p>
+<section class="container mx-auto px-4 py-6">
+  <app-filter-panel (filtersChanged)="onFiltersChanged($event)" class="mb-6" />
+  <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <app-hotel-card *ngFor="let hotel of filteredHotels()" [hotel]="hotel" />
+  </div>
+</section>
