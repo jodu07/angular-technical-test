@@ -24,8 +24,12 @@ export class HotelsListPageComponent {
   });
 
   filteredHotels = computed(() => {
-    return this.allHotels().filter((hotel) => {
-      const nameMatch = hotel.name.toLowerCase().includes(this.filters().name);
+    const list = this.allHotels();
+    if (!list || list.length === 0) return [];
+
+    return list.filter((hotel) => {
+      const filters = this.filters();
+      const nameMatch = hotel.name?.toLowerCase().includes(filters.name || '');
       const starMatch =
         this.filters().stars.length === 0 ||
         this.filters().stars.includes(hotel.stars);
@@ -43,3 +47,29 @@ export class HotelsListPageComponent {
     this.filters.set(filters);
   }
 }
+
+/** 
+ * filteredHotels = computed(() => {
+    const list = this.allHotels();
+    if (!list || list.length === 0) return [];
+
+    return list.filter((hotel) => {
+      const filters = this.filters();
+      const nameMatch = hotel.name?.toLowerCase().includes(filters.name || '');
+      const starMatch =
+        filters.stars.length === 0 || filters.stars.includes(hotel.stars);
+      const ratingMatch = hotel.rate >= filters.minRating;
+      const priceMatch = hotel.price <= filters.maxPrice;
+      console.log('Aplicando filtros:', filters, 'Resultados:', list.length);
+      return nameMatch && starMatch && ratingMatch && priceMatch;
+    });
+  });
+
+  constructor() {
+    this.hotelService.getHotels().subscribe((data) => {
+      console.log('Hoteles recibidos:', data);
+      this.allHotels.set(data);
+    });
+  }
+
+  }); */
