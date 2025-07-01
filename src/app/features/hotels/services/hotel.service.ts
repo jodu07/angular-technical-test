@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Hotel } from '../models/hotel.model';
-import { computed, effect, signal as createSignal } from '@angular/core';
+import { computed, signal as createSignal } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -15,9 +15,12 @@ export class HotelService {
   hotels = computed(() => this._hotels());
 
   fetchHotels() {
-    this.http
-      .get<Hotel[]>(this.baseUrl)
-      .subscribe((data) => this._hotels.set(data));
+    this.http.get<Hotel[]>(this.baseUrl).subscribe({
+      next: (data) => this._hotels.set(data),
+      error: (err) => {
+        this._hotels.set([]);
+      },
+    });
   }
 
   getHotels(): Observable<Hotel[]> {
