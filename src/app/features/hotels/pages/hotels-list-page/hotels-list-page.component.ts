@@ -71,29 +71,3 @@ export class HotelsListPageComponent {
     this.currentPage.set(1);
   }
 }
-
-/** 
- * filteredHotels = computed(() => {
-    const list = this.allHotels();
-    if (!list || list.length === 0) return [];
-
-    return list.filter((hotel) => {
-      const filters = this.filters();
-      const nameMatch = hotel.name?.toLowerCase().includes(filters.name || '');
-      const starMatch =
-        filters.stars.length === 0 || filters.stars.includes(hotel.stars);
-      const ratingMatch = hotel.rate >= filters.minRating;
-      const priceMatch = hotel.price <= filters.maxPrice;
-      console.log('Aplicando filtros:', filters, 'Resultados:', list.length);
-      return nameMatch && starMatch && ratingMatch && priceMatch;
-    });
-  });
-
-  constructor() {
-    this.hotelService.getHotels().subscribe((data) => {
-      console.log('Hoteles recibidos:', data);
-      this.allHotels.set(data);
-    });
-  }
-
-  }); */
