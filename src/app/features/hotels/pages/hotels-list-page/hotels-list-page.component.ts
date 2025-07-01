@@ -4,16 +4,39 @@ import { HotelService } from '../../services/hotel.service';
 import { Hotel } from '../../models/hotel.model';
 import { FilterPanelComponent } from '../../components/filter-panel/filter-panel.component';
 import { HotelCardComponent } from '../../components/hotel-card/hotel-card.component';
+import { PaginatorComponent } from '../../../../shared/components/paginator/paginator.component';
 
 @Component({
   selector: 'app-hotels-list-page',
   standalone: true,
-  imports: [CommonModule, FilterPanelComponent, HotelCardComponent],
+  imports: [
+    CommonModule,
+    FilterPanelComponent,
+    HotelCardComponent,
+    PaginatorComponent,
+  ],
   templateUrl: './hotels-list-page.component.html',
   styleUrl: './hotels-list-page.component.scss',
 })
 export class HotelsListPageComponent {
   private hotelService = inject(HotelService);
+
+  readonly currentPage = signal(1);
+  readonly pageSize = 9;
+
+  readonly paginatedHotels = computed(() => {
+    const hotels = this.filteredHotels();
+    const start = (this.currentPage() - 1) * this.pageSize;
+    return hotels.slice(start, start + this.pageSize);
+  });
+
+  readonly totalPages = computed(() => {
+    return Math.ceil(this.filteredHotels().length / this.pageSize);
+  });
+
+  setPage(page: number) {
+    this.currentPage.set(page);
+  }
 
   allHotels = signal<Hotel[]>([]);
   filters = signal({
@@ -45,6 +68,7 @@ export class HotelsListPageComponent {
 
   onFiltersChanged(filters: any) {
     this.filters.set(filters);
+    this.currentPage.set(1);
   }
 }
 
