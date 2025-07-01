@@ -11,5 +11,5 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: './hotel-card.component.scss',
 })
 export class HotelCardComponent {
-  @Input() hotel!: Hotel;
+  @Input({ required: true }) hotel!: Hotel;
 }
