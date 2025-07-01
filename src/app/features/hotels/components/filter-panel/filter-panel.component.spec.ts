@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FilterPanelComponent } from './filter-panel.component';
 
-fdescribe('FilterPanelComponent', () => {
+describe('FilterPanelComponent', () => {
   let component: FilterPanelComponent;
   let fixture: ComponentFixture<FilterPanelComponent>;
 
