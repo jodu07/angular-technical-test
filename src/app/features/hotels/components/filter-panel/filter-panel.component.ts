@@ -25,6 +25,8 @@ export class FilterPanelComponent {
 
   form: FormGroup;
 
+  starCategory = [1, 2, 3, 4, 5];
+
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       name: [''],

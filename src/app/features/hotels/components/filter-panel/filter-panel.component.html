@@ -9,9 +9,11 @@
   <div>
     <p class="font-semibold text-sm mb-1">Categoría (estrellas):</p>
     <div class="flex gap-3" formGroupName="stars">
-      <ng-container *ngFor="let star of [1, 2, 3, 4, 5]">
+      @for (star of starCategory; track $index) {
+      <ng-container>
         <mat-checkbox [formControlName]="star">{{ star }} ⭐</mat-checkbox>
       </ng-container>
+      }
     </div>
   </div>
 
