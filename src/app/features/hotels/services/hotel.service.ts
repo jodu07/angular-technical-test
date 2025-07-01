@@ -8,12 +8,26 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class HotelService {
+  /** Base URL for the hotel API endpoint. */
   private baseUrl = 'http://localhost:3000/hotels';
+
   constructor(private http: HttpClient) {}
 
+  /**
+   * Internal signal holding the list of hotels once fetched.
+   */
   private _hotels = createSignal<Hotel[]>([]);
-  hotels = computed(() => this._hotels());
 
+  /**
+   * Public computed signal exposing the current hotel list.
+   * Can be consumed reactively from components.
+   */
+  readonly hotels = computed(() => this._hotels());
+
+  /**
+   * Fetches hotel data from the API and updates the internal signal.
+   * On error, resets the hotel list to an empty array.
+   */
   fetchHotels() {
     this.http.get<Hotel[]>(this.baseUrl).subscribe({
       next: (data) => this._hotels.set(data),
@@ -23,6 +37,10 @@ export class HotelService {
     });
   }
 
+  /**
+   * Alternative method that returns hotel data as an Observable.
+   * Can be used for non-signal-based patterns or legacy interop.
+   */
   getHotels(): Observable<Hotel[]> {
     return this.http.get<Hotel[]>(this.baseUrl);
   }

@@ -6,6 +6,9 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
+/**
+ * FilterPanelComponent.
+ */
 @Component({
   selector: 'app-filter-panel',
   standalone: true,
@@ -21,10 +24,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   styleUrl: './filter-panel.component.scss',
 })
 export class FilterPanelComponent {
+  /**
+   * Emits updated filter values whenever any field changes.
+   */
   @Output() filtersChanged = new EventEmitter<any>();
-
+  /**
+   * Reactive form instance containing all filter controls.
+   */
   form: FormGroup;
-
+  /**
+   * List of available star categories for the checkbox filter.
+   */
   starCategory = [1, 2, 3, 4, 5];
 
   constructor(private fb: FormBuilder) {
