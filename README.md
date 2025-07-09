@@ -4,9 +4,6 @@
 
 # Prueba Técnica Angular 
 
-## Importante 🚨
-Esta prueba es de carácter privado. Se solicita a los candidatos que no la compartan ni publiquen, total o parcialmente, en ningún servidor, repositorio ni plataforma pública.
-
 ## Descripción 📋
 El objetivo de esta prueba técnica es desarrollar una aplicación en Angular que muestre un listado de hoteles. La aplicación debe permitir a los usuarios filtrar los hoteles por nombre, categoría (estrellas), valoración y precio.
 
